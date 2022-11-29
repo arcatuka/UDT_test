@@ -1,0 +1,75 @@
+@startuml
+
+
+entity "Customer" as e01 {
+  *id : ObjectID <<generated>>
+  --
+  *personal_information:personal_information <<FK>>
+  *cart:list<cart> 
+  *transaction:list<transaction> 
+  *billing:list<billing> 
+}
+
+entity "personal_information" as e02 {
+  *id: ObjectID <<generated>>
+  --
+  name : String
+  address: String
+  email: String
+  gender: String
+}
+
+entity "cart" as e03 {
+  *cart_id : ObjectID <<generated>>
+  --
+}
+
+entity "transaction" as e04 {
+  *transaction_id : ObjectID <<generated>>
+  --
+}
+
+entity "billing" as e05 {
+  *billing_id : ObjectID <<generated>>
+  --
+}
+
+entity "product" as e07 {
+  *product_id : ObjectID <<generated>>
+  --
+}
+
+entity "Agency" as e06 {
+  *Agency_id : ObjectID <<generated>>
+  --
+  name:String
+  *personal_information:list<personal_information> 
+  *product:list<product:list> 
+  *transaction:list<transaction>  
+  *billing:list<billing> 
+}
+
+entity "Admin" as e08 {
+  *Admin_id : ObjectID<<generated>>
+  --
+  admin_name:String
+  *Agency:list<Agency> 
+  +readAgency():void
+  +createAgency():void
+  +updateAgency():void
+  +deleteAgency():void
+}
+
+e01 ||--|| e02
+e01 ||--|| e03
+e01 ||--|| e04
+e01 ||--|| e05
+
+e06 ||--|{ e02
+e06 ||--|{ e04
+e06 ||--|{ e05
+e06 ||--|{ e07
+
+e08 ||--|{ e06
+
+@enduml

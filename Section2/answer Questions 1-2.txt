@@ -1,0 +1,14 @@
+1.With ERD you have already designed on question 1, what database are you using to implement?
+I'm using mongoDB to implement.
+2.Why are you using that? What is the strong and weak point of it?
+mongoDB makes it easy for developers to store, manage, and retrieve data when creating applications with most programming languages.
+Pros:
+-The database is highly flexible.
+-It can be distributed amongst multiple databases.
+-It is really fast and great for scalabilityvariety of data types.
+-Is easy to set up and implement.
+Cons:
+-The database takes up a ton of memory.
+-It has limitations of nesting to 100 levels.
+-It has a document size limit of 16 MB.
+-There is a limit of 20,000 to your max connection number.

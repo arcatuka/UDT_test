@@ -1,0 +1,6 @@
+Strong:
+- Can access the api anywhere.
+- Can save and merge products data easily.
+- quick operation.
+Weak and improve:
+- Easy to update database does not guarantee security, need to go through authenticate

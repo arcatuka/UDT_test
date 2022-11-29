@@ -1,0 +1,15 @@
+	@startuml
+participant third_party_API
+actor User #red
+participant Database
+
+User->third_party_API: get data request
+third_party_API-->User: Return valid data
+User->Database: save data request
+Database -->User:data saved successfully
+
+User->third_party_API: get data request
+third_party_API-->User: Return valid data
+User->Database: merge data request
+Database -->User:data merged successfully
+@enduml

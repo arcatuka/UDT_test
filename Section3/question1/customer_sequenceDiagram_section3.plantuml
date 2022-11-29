@@ -1,0 +1,20 @@
+@startuml
+actor Customer #red
+participant System
+participant Database
+
+Customer ->System: login Request
+System ->Database: check login details
+Database-->System :valid details
+System-->Customer : login successfully
+Customer ->System: read transaction link with product
+System ->Database: check transaction details
+Database-->Customer:valid details
+Customer ->System: read billing link with product
+System ->Database: check billing details
+Database-->Customer:valid details
+Customer ->System: logout Request
+System-->Customer : logout successfully
+
+
+@enduml

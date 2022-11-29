@@ -1,0 +1,23 @@
+	
+@startuml
+actor Admin #red
+participant System
+participant Database
+
+Admin ->System: read billing
+System ->Database: check valid details
+Database -->Admin :valid details
+Admin ->System: read transaction
+System ->Database: check valid details
+Database -->Admin :valid details
+Admin ->System: read product
+System ->Database: check valid details
+Database -->Admin :valid details
+Admin ->System: read customer
+System ->Database: check valid details
+Database -->Admin :valid details
+Admin ->System: read agency
+System ->Database: check valid details
+Database -->Admin :valid details
+
+@enduml

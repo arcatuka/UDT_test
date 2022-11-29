@@ -1,0 +1,11 @@
+What are the strong and weak points of your solution? How to improve that?
+Strong:
+- Agency has the ability to manage the updating, adding and deleting of products, making product information always assured to customers.
+- Just reading through transactions and billings also ensures that the Agency does not change what is in its favor and disadvantage for the client.
+- Customers can only read information related to themselves, making information security guaranteed for users.
+- Customers can read agency information, ensure safety and improve customer trust.
+Weak and improve:
+- The agency's editing may change the product unreasonably (it is recommended to add editing and deleting of agency through the admin to ensure unfairness when editing the agency's product).
+- Customers should also be allowed to correct their personal information if there is an error in the information.
+- The agency should also read the client's information to ensure that the information is reasonable.
+- Admin should also be able to edit customer information to simultaneously support customers if needed

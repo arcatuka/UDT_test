@@ -1,0 +1,13 @@
+@startuml
+actor User #red
+participant System
+participant Database
+
+User->System: login request
+System ->Database: check login details
+Database-->System :valid details
+System ->System :authenticate
+System -->User :login page
+User->System:logout request
+System-->User :logout successfully
+@enduml

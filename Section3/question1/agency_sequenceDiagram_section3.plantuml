@@ -1,0 +1,23 @@
+	
+@startuml
+actor Agency #red
+participant System
+participant Database
+
+Agency ->System: read product
+System ->Database: check valid details
+Database -->Agency:valid details
+Agency ->System: add new product
+System ->Database: add new product request
+Database -->System:add new product to database
+System -->Agency: product added successfully
+Agency ->System: select product for update
+System ->Database: update product request
+Database -->System:product updated from database
+System -->Agency: product updated successfully
+Agency ->System: select product for delete
+System ->Database: delete product request
+Database -->System:product delete from database
+System -->Agency: product deleted successfully
+
+@enduml
