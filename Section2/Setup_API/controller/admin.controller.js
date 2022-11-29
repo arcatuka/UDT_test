@@ -1,11 +1,11 @@
 const model = require('../model/index')
-const mongoose = require("mongoose")
-const getAllAgency =async(req, res,next) => {
+
+const readAgency =async(req, res,next) => {
     const allAgency = await model.modelAgency.Agency.find()
     return res.json(allAgency)
 }
 
-const postAgency =async(req, res,next) => {
+const createAgency =async(req, res,next) => {
     const newAgency = new model.modelAgency.Agency({
       name:req.body.name,
       Personal_Information: [],
@@ -14,11 +14,11 @@ const postAgency =async(req, res,next) => {
       billing:[],
     })
     const insertAgency = await newAgency.save()
-
+    
     return res.status(201).send(insertAgency)
   }
 
-  const patchAgency =async(req, res,next) => {
+  const updateAgency =async(req, res,next) => {
     var object= model.modelAgency.Agency.findOne({name: req.body.name},async function(error, user) {
       if (error || !user) {
         res.send({ error: error });          
@@ -26,7 +26,6 @@ const postAgency =async(req, res,next) => {
         if(req.body.personal_information!=[] || req.body.personal_information!=null)
         {
           let list =[]
-          console.log(req.body)
             req.body.personal_information.forEach(async element => {
             const newPersonal_information =new model.modelPersonal.Personal 
             ({
@@ -40,7 +39,6 @@ const postAgency =async(req, res,next) => {
         if(req.body.product!=[] || req.body.product!=null)
         {
           let list =[]
-          console.log(req.body.product.length)
             req.body.product.forEach(async element => {
             const newProduct =new model.modelProduct.Product 
             ({
@@ -54,7 +52,6 @@ const postAgency =async(req, res,next) => {
         if(req.body.transaction!=[] || req.body.transaction!=null)
         {
           let list =[]
-          console.log(req.body.transaction.length)
             req.body.transaction.forEach(async element => {
             const newTransaction =new model.modelTransaction.Transaction 
             ({
@@ -68,7 +65,6 @@ const postAgency =async(req, res,next) => {
         if(req.body.billing!=[] || req.body.billing!=null)
         {
           let list =[]
-          console.log(req.body.billing.length)
             req.body.billing.forEach(async element => {
             const newBilling =new model.modelBilling.Billing 
             ({
@@ -92,9 +88,9 @@ const postAgency =async(req, res,next) => {
   }
 
   module.exports={
-    getAllAgency,
-    postAgency,
-    patchAgency,
+    readAgency,
+    createAgency,
+    updateAgency,
     deleteAgency
   }
 

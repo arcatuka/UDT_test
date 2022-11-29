@@ -9,29 +9,17 @@ totalCost: 5,
 {
 name: "Container renter B",
 container: 2,
-totalCost: 1,
+totalCost: 10,
 },
 {
 name: "Container renter C",
-container: 8,
-totalCost: 5,
+container: 10,
+totalCost: 3,
 },
-{
-    name: "Container renter D",
-    container: 3,
-    totalCost: 2,
-    },
-    {
-    name: "Container renter E",
-    container: 5,
-    totalCost: 2,
-    },
-    {
-        name: "Container renter f",
-        container: 5,
-        totalCost: 4,
-        },
 ];
+
+
+
     
 
 /////////////////////////////////////////
@@ -52,15 +40,13 @@ function FindContainer()
             }
         }
     }
-} 
+}
 listings.filter(FindContainer)
 
 function move(array, from, to) {
     if( to === from ) return array;
-  
     var target = array[from];                         
     var increment = to < from ? -1 : 1;
-  
     for(var k = from; k != to; k += increment){
       array[k] = array[k + increment];
     }
@@ -79,7 +65,6 @@ for(let i =0; i <listings.length; i++)
             {
                 move(listings,i,j)
             }
-            
         }
     }
 }
@@ -119,7 +104,6 @@ if(containerCost>0)
 }
 else{
     countCost=10000
-    
     for(let i =0; i < listings.length;i++)
     {
         let newList = []

@@ -3,15 +3,12 @@ const app = express();
 const port = 3000;
 const mongoose= require('mongoose')
 const adminRouter = require('./router/admin.router')
-const agencyRouter = require('./router/agency.router')
-const customerRouter = require('./router/customer.router')
 
 
 app.use(express.json())
 
 app.use('/admin',adminRouter)
-app.use('/agency',agencyRouter)
-app.use('/customer',customerRouter)
+
 
 
 

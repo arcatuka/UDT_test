@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router();
 
-const agencyController = require('../controller/admin.controller')
-router.get('/',agencyController.getAllAgency)
-router.post('/',agencyController.postAgency)
-router.patch('/',agencyController.patchAgency)
-router.delete('/:id',agencyController.deleteAgency)
+const adminController = require('../controller/admin.controller')
+router.get('/',adminController.readAgency)
+router.post('/',adminController.createAgency)
+router.patch('/',adminController.updateAgency)
+router.delete('/:id',adminController.deleteAgency)
 
 module.exports = router;
