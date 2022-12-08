@@ -1,75 +1,66 @@
-@startuml
+@startuml ecommerceERD
 
+skinparam linetype ortho
 
-entity "Customer" as e01 {
-  *id : ObjectID <<generated>>
-  --
-  *personal_information:personal_information <<FK>>
-  *cart:list<cart> 
-  *transaction:list<transaction> 
-  *billing:list<billing> 
+entity User {
+    *id: ObjectId <<generated>>
+    --
+    *name: String
+    *password: String
+    address: String
+    email: String
+    gender: String
+    role:Role
+
 }
 
-entity "personal_information" as e02 {
-  *id: ObjectID <<generated>>
-  --
-  name : String
-  address: String
-  email: String
-  gender: String
+enum Role {
+    Admin
+    Customer
+    Agency
 }
 
-entity "cart" as e03 {
-  *cart_id : ObjectID <<generated>>
-  --
+
+entity Transaction {
+    *transaction_id: ObjectId <<generated>>
+    --
+    *user_id:ObjectId <<FK>>
+    *billing_id:ObjectId <<FK>>
+    --
+    *totalCost:Number
 }
 
-entity "transaction" as e04 {
-  *transaction_id : ObjectID <<generated>>
-  --
+entity Product {
+    *product_id: ObjectId <<generated>>
+    --
+    *card_id: ObjectId <<FK>>
+    *user_id: ObjectId <<FK>>
+    --
+    *name: String
+    *price: Number
+}
+entity Cart {
+    *id: ObjectId <<generated>>
+    --
+    *user_id: ObjectId <<FK>>
+
 }
 
-entity "billing" as e05 {
-  *billing_id : ObjectID <<generated>>
-  --
+entity Billing{
+    *billing_id: ObjectId <<generated>>
+    --
+    *cart_id: ObjectId <<FK>>
+    --
+    *totalCost:Number
+    *payment:Number
 }
 
-entity "product" as e07 {
-  *product_id : ObjectID <<generated>>
-  --
-}
 
-entity "Agency" as e06 {
-  *Agency_id : ObjectID <<generated>>
-  --
-  name:String
-  *personal_information:list<personal_information> 
-  *product:list<product:list> 
-  *transaction:list<transaction>  
-  *billing:list<billing> 
-}
+User ||--|{ Transaction
+Transaction ||--|| Billing
+Billing||--|| Cart
 
-entity "Admin" as e08 {
-  *Admin_id : ObjectID<<generated>>
-  --
-  admin_name:String
-  *Agency:list<Agency> 
-  +readAgency():void
-  +createAgency():void
-  +updateAgency():void
-  +deleteAgency():void
-}
-
-e01 ||--|| e02
-e01 ||--|| e03
-e01 ||--|| e04
-e01 ||--|| e05
-
-e06 ||--|{ e02
-e06 ||--|{ e04
-e06 ||--|{ e05
-e06 ||--|{ e07
-
-e08 ||--|{ e06
-
+User ||--|| Cart
+Cart ||--|{ Product
+User ||--|{ Product
 @enduml

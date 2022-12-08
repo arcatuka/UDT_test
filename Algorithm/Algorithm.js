@@ -1,3 +1,4 @@
+
 //input place
 const neededContainer = 10;
 const listings = [
@@ -18,9 +19,6 @@ totalCost: 3,
 },
 ];
 
-
-
-    
 
 /////////////////////////////////////////
 let newlistings=[]
@@ -127,7 +125,50 @@ else{
             newlistings=newList
         }
     }
+
+    if(countContainer < neededContainer && newlistings.length <= 1)
+    {
+        countCost=10000
+        for(let i =0; i < listings.length-1;i++)
+        {
+        let newList = []
+        let newCostCount=listings[i].totalCost
+        let containerValue=listings[i].container
+        newList.push(listings[i])
+        for(let j =i+1; j < listings.length;j++)
+        {
+            
+            if(listings[i].name !== listings[j].name)
+            if(containerValue <= neededContainer && listings[j].container < neededContainer)
+            {
+                newCostCount+=listings[j].totalCost
+                containerValue+=listings[j].container
+                newList.push(listings[j])
+            }
+            else if(containerValue <= neededContainer && listings[j].container > neededContainer)
+            {
+                if(listings[j].totalCost <= countCost)
+                {
+                    countCost = listings[j].totalCost
+                    containerValue=listings[j].container
+                    let thisnewlist =[]
+                    thisnewlist.push(listings[j])
+                    newList = thisnewlist
+                }
+            }
+            if(countCost >= newCostCount  && containerValue > neededContainer)
+            {
+                countCost = newCostCount
+                newlistings = newList
+                countContainer=containerValue
+            }
+        }
+        }
+    }
 }
+
+
+
 for(let i =0; i < newlistings.length; i++)
 {
     console.log("[Contract with] "+newlistings[i].name+" "+ newlistings[i].container+ " container," + " price:"+newlistings[i].totalCost)
